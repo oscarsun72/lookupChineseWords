@@ -61,10 +61,10 @@
         Shell(Replace(GetDefaultBrowserEXE, """%1", "https://www.google.com.tw/search?q=site:http://www.zdic.net/+" & wx))
         Shell(Replace(GetDefaultBrowserEXE, """%1", "http://www.zdic.net/search/?q=" & wx)) 'http://www.zdic.net/search/?q=%E8%AD%A6%E7%9B%AE&c=2
     End Sub
-    Sub 查詢國學大師汉语字典(x As String) 'http://www.guoxuedashi.com/zidian/93F5.html
+    Sub 查詢國學大師汉语字典(x As String) 'http://www.guoxuedashi.net/zidian/93F5.html
         Dim u8 As System.Text.Encoding = System.Text.Encoding.Unicode
         Dim bytes As Byte() = u8.GetBytes(x)
-        Const HDurl As String = "http://www.guoxuedashi.com/so.php?sokeytm="
+        Const HDurl As String = "http://www.guoxuedashi.net/so.php?sokeytm="
         Shell(Replace(GetDefaultBrowserEXE, """%1", HDurl & wx & "&ka=100&submit="))
         Shell(Replace(GetDefaultBrowserEXE, """%1", "http://tw.ichacha.net/zaoju/" & wx & ".html")) '查詢查查網造句 2016/10/11
     End Sub
