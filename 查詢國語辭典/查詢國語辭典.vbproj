@@ -123,7 +123,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BrowserChrome.cs" />
     <Content Include="國語辭典.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
