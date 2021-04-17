@@ -75,6 +75,8 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrowserChrome.vb" />
+    <Compile Include="BrowserOps.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +123,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BrowserChrome.cs" />
     <Content Include="國語辭典.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
