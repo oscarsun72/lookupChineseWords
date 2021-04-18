@@ -65,11 +65,12 @@
         'Shell(Replace(browserApp, """%1", "http://www.zdic.net/search/?q=" & wx)) 'http://www.zdic.net/search/?q=%E8%AD%A6%E7%9B%AE&c=2
 #End Region
     End Sub
-    Sub 查詢國學大師汉语字典(x As String) 'http://www.guoxuedashi.net/zidian/93F5.html
+    Sub 查詢國學大師汉语字典() 'http://www.guoxuedashi.net/zidian/93F5.html
         Dim url As String = "http://www.guoxuedashi.net/so.php?sokeytm=" & wx & "&ka=100&submit=" &
             " " & "http://tw.ichacha.net/zaoju/" & wx & ".html"
         Process.Start(browserApp, url)
 #Region "舊碼"
+        'Sub 查詢國學大師汉语字典(x As String)
         'Dim u8 As System.Text.Encoding = System.Text.Encoding.Unicode
         'Dim bytes As Byte() = u8.GetBytes(x)
         'Const HDurl As String = "http://www.guoxuedashi.net/so.php?sokeytm="
@@ -79,13 +80,13 @@
     End Sub
     Private Sub Form1_Load(sender As Object, e As System.EventArgs) Handles Me.Load
         Dim qx As String = Clipboard.GetText
-        If qx = "" Then Exit Sub
+        If qx = "" Then End 'Exit Sub 'exit sub 會跑出表單來
         wx = 查詢字串轉換_網路碼(qx)
         If Not browserApp.IndexOf("iexplore") Then
             Dim bChrom As New BrowserChrome
             browserApp = bChrom.ChromeAppFileName
         End If
-        If Len(qx) > 1 Then 查詢國學大師汉语字典(qx)
+        If Len(qx) > 1 Then 查詢國學大師汉语字典()
         查詢漢典()
 
         查詢國語辭典()
