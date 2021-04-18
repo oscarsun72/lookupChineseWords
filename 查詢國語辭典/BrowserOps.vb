@@ -11,6 +11,8 @@ Module BrowserOps 'VB 的Module 應就類似 C的 Struct 所預設都是 Public 
                     "HKEY_CLASSES_ROOT\http\shell\open\command"
             DefaultBrowser = Registry.GetValue(
                 defaultBrowserkey, "", Nothing)
+            DefaultBrowser = DefaultBrowser.Substring(0,
+                DefaultBrowser.IndexOf(".exe""") + 5)
 #Region "其他參考&舊碼"
             '： https://vimsky.com/zh-tw/examples/detail/vbnet-method-microsoft.win32.registry.getvalue.html
             'https://docs.microsoft.com/zh-tw/dotnet/visual-basic/developing-apps/programming/computer-resources/how-to-read-a-value-from-a-registry-key

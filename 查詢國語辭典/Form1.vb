@@ -1,7 +1,7 @@
 ﻿Public Class Form1
     Dim wx As String,
-        browserApp As String =
-        Replace(DefaultBrowser, " -- ""%1""", "").Trim()
+        browserApp As String = DefaultBrowser()
+    'Replace(DefaultBrowser, " -- ""%1""", "").Trim()
     Function 查詢字串轉換_國語會碼(w As String) 'Big5碼
         Dim u8 As System.Text.Encoding = System.Text.Encoding.GetEncoding("big5") 'https://msdn.microsoft.com/zh-tw/library/system.text.encoding(v=vs.110).aspx
         Dim bytes As Byte() = u8.GetBytes(w)
@@ -68,7 +68,11 @@
     Sub 查詢國學大師汉语字典() 'http://www.guoxuedashi.net/zidian/93F5.html
         Dim url As String = "http://www.guoxuedashi.net/so.php?sokeytm=" & wx & "&ka=100&submit=" &
             " " & "http://tw.ichacha.net/zaoju/" & wx & ".html"
-        Process.Start(browserApp, url)
+        Try 'https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/statements/try-catch-finally-statement?f1url=%3FappId%3DDev16IDEF1%26l%3DEN-US%26k%3Dk(vb.Try);k(TargetFrameworkMoniker-.NETFramework,Version%253Dv4.0);k(DevLang-VB)%26rd%3Dtrue
+            Process.Start(browserApp, url)
+        Catch ex As Exception
+            MsgBox(browserApp + ex.Message)
+        End Try
 #Region "舊碼"
         'Sub 查詢國學大師汉语字典(x As String)
         'Dim u8 As System.Text.Encoding = System.Text.Encoding.Unicode
