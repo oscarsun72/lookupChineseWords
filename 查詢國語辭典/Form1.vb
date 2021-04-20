@@ -2,6 +2,29 @@
     Dim wx As String,
         browserApp As String = DefaultBrowser()
     'Replace(DefaultBrowser, " -- ""%1""", "").Trim()
+
+    Function 查詢字串轉換_百度碼(w As String) As String '不成！有空再試20210420 用網路碼即可
+        Dim i As Integer, result As String = ""
+        For index = 1 To w.Length
+            result += "%" + Conversion.Hex(Convert.ToInt32(w(i)))
+        Next
+        Return result
+#Region "'百度搜索链接中的汉字转码:"
+        'function getEncodeStr(src: string): string;
+        '        var i: Integer;
+        'begin
+        '        result := '';
+        '    For i := 1 To length(src) Do begin
+        '            //Dec2Hex用于返回十进制数的十六进制编码字符串
+        '        result := result + '%' + Dec2Hex(ord(src[i]));
+        '    End;
+        'End;
+        '————————————————
+        '版权声明：       本文为CSDN博主「alvin_2005」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+        '原文链接：       https : //blog.csdn.net/alvin_2005/article/details/2076174
+        '
+#End Region
+    End Function
     Function 查詢字串轉換_國語會碼(w As String) 'Big5碼
         Dim u8 As System.Text.Encoding = System.Text.Encoding.GetEncoding("big5") 'https://msdn.microsoft.com/zh-tw/library/system.text.encoding(v=vs.110).aspx
         Dim bytes As Byte() = u8.GetBytes(w)
@@ -85,16 +108,19 @@
     Private Sub Form1_Load(sender As Object, e As System.EventArgs) Handles Me.Load
         Dim qx As String = Clipboard.GetText
         If qx = "" Then End 'Exit Sub 'exit sub 會跑出表單來
+
         wx = 查詢字串轉換_網路碼(qx)
         If Not browserApp.IndexOf("iexplore") Then
             Dim bChrom As New BrowserChrome
             browserApp = bChrom.ChromeAppFileName
         End If
+        '檢索《百度漢語》，可連至《百度百科》
+        Process.Start(browserApp, "https://dict.baidu.com/s?wd=" + wx)
+
         If Len(qx) > 1 Then 查詢國學大師汉语字典()
         查詢漢典()
 
         查詢國語辭典()
-
         End
     End Sub
 End Class
