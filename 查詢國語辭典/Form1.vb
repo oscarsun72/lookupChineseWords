@@ -3,7 +3,7 @@
         browserApp As String = DefaultBrowser()
     'Replace(DefaultBrowser, " -- ""%1""", "").Trim()
 
-    Function 查詢字串轉換_百度碼(w As String) As String '不成！有空再試20210420 用網路碼即可
+    Function 查詢字串轉換_百度碼(w As String) As String '不成！有空再研究20210420 用網路碼即可
         Dim i As Integer, result As String = ""
         For index = 1 To w.Length
             result += "%" + Conversion.Hex(Convert.ToInt32(w(i)))
